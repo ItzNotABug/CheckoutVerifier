@@ -69,16 +69,15 @@ Just pass on the required fields in the Constructor & call `start();`
 ```kotlin
 CheckoutVerifier(url, jsonResponse, signature, object : VerifyingListener {
             override fun onVerificationStarted() {
-                //Show a ProgressDialog or something
+                /** Show a ProgressDialog or something */
             }
 
             override fun onVerificationCompleted(isVerified: Boolean) {
-                //Check if the Purchase is Valid...
-                //Consume if not!
+                /** Check if the Purchase is Valid, Consume if not! */
             }
 
             override fun onExceptionCaught(exception: Exception) {
-                //Called when there was an error connecting to Server.
+                /** Called when there was an error connecting to Server. */
             }
         }).start()
 ```
