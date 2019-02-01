@@ -26,7 +26,7 @@ internal class CheckoutVerifierTask(
         val url: URL
         var urlConnection: HttpsURLConnection? = null
         try {
-            val urlStr = verifyingUrl + "?data=" + URLEncoder.encode(responseBody, "UTF-8") + "&signature=" + URLEncoder.encode(signature, "UTF-8")
+            val urlStr = verifyingUrl + "?jsonResponse=" + URLEncoder.encode(responseBody, "UTF-8") + "&signature=" + URLEncoder.encode(signature, "UTF-8")
 
             url = URL(urlStr)
             urlConnection = url.openConnection() as HttpsURLConnection
