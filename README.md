@@ -65,20 +65,6 @@ dependencies {
 #### * CheckOutVerifier
 Just pass on the required fields in the Constructor & call `start();`
 <br/>Example:
-<br/>`Kotlin`
-```kotlin
-CheckoutVerifier(url, jsonResponse, signature, object : VerifyingListener {
-            override fun onVerificationStarted() {
-            }
-
-            override fun onVerificationCompleted(isVerified: Boolean) {
-            }
-
-            override fun onExceptionCaught(exception: Exception) {
-                /** Called when there was an error connecting to Server. */
-            }
-        }).start()
-```
 <br/>`Java`
 ``` java
 new CheckoutVerifier(url, jsonResponse, signature, new VerifyingListener() {
@@ -99,4 +85,14 @@ new CheckoutVerifier(url, jsonResponse, signature, new VerifyingListener() {
             }
         }).start();
 
+```
+<br/>`Kotlin`
+```kotlin
+CheckoutVerifier(url, jsonResponse, signature, object : VerifyingListener {
+            override fun onVerificationStarted() {}
+
+            override fun onVerificationCompleted(isVerified: Boolean) {}
+
+            override fun onExceptionCaught(exception: Exception) {}
+        }).start()
 ```
