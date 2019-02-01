@@ -8,12 +8,12 @@ Well, the library sends the Signed Json Response & Signature that you receive af
 
 
 ## Set Up
-#### Get Licensing API Key
+#### * Get Licensing API Key
 Navigate to Developer Console & Select your App.
 <br/>Go to <b>Development Tools</b> > <b>Services & API.</b>
 <br/>Copy the <b>BASE64 Licensing Key</b>
 
-#### Creating a Verifying PHP File
+#### * Creating a Verifying PHP File
 Just a create a File & name it as `verify.php` or anything you want.
 <br/>Paste the following code in it & Upload it to your server.
 
@@ -53,7 +53,7 @@ openssl_free_key($key);
 ?>
 ```
 
-#### Implementing Library (Gradle)
+#### * Implementing Library (Gradle)
 Latest_Version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg) ](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
 <br/>
 ```gradle
@@ -62,7 +62,7 @@ dependencies {
 }
 ```
 
-#### CheckOutVerifier
+#### * CheckOutVerifier
 Just pass on the required fields in the Constructor & call `start();`
 <br/>Example:
 <br/>`Kotlin`
