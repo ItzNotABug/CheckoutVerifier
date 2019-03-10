@@ -7,7 +7,7 @@ class CheckoutVerifier {
     private var signature = ""
     private var listener: VerifyingListener? = null
 
-    constructor() {}
+    constructor()
 
     constructor(url: String, jsonResponse: String, signature: String, mListener: VerifyingListener?) {
         this.verifyingUrl = url
@@ -48,6 +48,7 @@ class CheckoutVerifier {
 
 
     private val isEverythingOk: Boolean
-        get() = !verifyingUrl.trim { it <= ' ' }.isEmpty() && verifyingUrl.startsWith("http") && !responseJson.trim { it <= ' ' }.isEmpty() && !signature.trim { it <= ' ' }.isEmpty()
+        get() = !verifyingUrl.trim { it <= ' ' }.isEmpty() && verifyingUrl.startsWith("http")
+                && !responseJson.trim { it <= ' ' }.isEmpty() && !signature.trim { it <= ' ' }.isEmpty()
 
 }

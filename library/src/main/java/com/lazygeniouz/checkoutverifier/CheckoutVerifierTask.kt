@@ -22,17 +22,17 @@ internal class CheckoutVerifierTask(
     }
 
     override fun doInBackground(vararg strings: String): Boolean? {
-        var retrieveFromServer = ""
+        var isPurchaseVerified = ""
         val url: URL
         var urlConnection: HttpsURLConnection? = null
         try {
-            val urlStr = verifyingUrl + "?jsonResponse=" + URLEncoder.encode(responseBody, "UTF-8") + "&signature=" + URLEncoder.encode(signature, "UTF-8")
+            val serverUrl = verifyingUrl + "?jsonResponse=" + URLEncoder.encode(responseBody, "UTF-8") + "&signature=" + URLEncoder.encode(signature, "UTF-8")
 
-            url = URL(urlStr)
+            url = URL(serverUrl)
             urlConnection = url.openConnection() as HttpsURLConnection
-            val `in` = urlConnection.inputStream
-            val inRead = InputStreamReader(`in`)
-            retrieveFromServer = convertStreamToString(inRead)
+            val inputStream = urlConnection.inputStream
+            val inRead = InputStreamReader(inputStream)
+            isPurchaseVerified = convertStreamToString(inRead)
 
         } catch (e: IOException) {
             e.printStackTrace()
@@ -41,7 +41,7 @@ internal class CheckoutVerifierTask(
             urlConnection?.disconnect()
         }
 
-        return retrieveFromServer == "verified"
+        return isPurchaseVerified == "verified"
     }
 
     override fun onPostExecute(result: Boolean?) {
