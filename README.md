@@ -20,7 +20,7 @@ Just a create a File & name it as `verify.php` or anything you want.
 ```php
 <?php
 // get jsonResponse
-$data = $_GET['data'];
+$data = $_GET['jsonResponse'];
 
 // get signature
 $signature = $_GET['signature'];
