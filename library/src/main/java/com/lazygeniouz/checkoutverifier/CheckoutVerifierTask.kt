@@ -1,6 +1,7 @@
 package com.lazygeniouz.checkoutverifier
 
 import android.os.AsyncTask
+import org.jetbrains.annotations.Nullable
 import java.io.IOException
 import java.io.InputStreamReader
 import java.net.URL
@@ -15,6 +16,7 @@ internal class CheckoutVerifierTask(
     private val listener: VerifyingListener?
 ) : AsyncTask<String, Boolean, Boolean>() {
 
+    private var isExceptionCaught: Boolean = false
 
     override fun onPreExecute() {
         super.onPreExecute()
@@ -36,16 +38,18 @@ internal class CheckoutVerifierTask(
 
         } catch (e: IOException) {
             e.printStackTrace()
+            isExceptionCaught = true
             listener?.onExceptionCaught(e)
         } finally {
             urlConnection?.disconnect()
         }
 
-        return isPurchaseVerified == "verified"
+        return if (!isExceptionCaught) isPurchaseVerified == "verified"
+        else null
     }
 
-    override fun onPostExecute(result: Boolean?) {
-        listener?.onVerificationCompleted(result!!)
+    override fun onPostExecute(@Nullable result: Boolean?) {
+        listener?.onVerificationCompleted(result)
     }
 
     private fun convertStreamToString(`is`: InputStreamReader): String {
