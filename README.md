@@ -75,8 +75,16 @@ new CheckoutVerifier(url, jsonResponse, signature, new VerifyingListener() {
 
             @Override
             public void onVerificationCompleted(boolean isVerified) {
-                //Check if the Purchase is Valid...
-                //Consume if not!
+                //From library version (1.4),
+                //this Boolean will be `NULLABLE` & will be `NULL` if an exception was caught,
+                //while connecting the specified server url or something else went wrong,
+                //for better error handling
+
+                if(isVerified != null) {
+                    ...
+                    //Check if the Purchase is Valid...
+                    //Consume if not!
+                }
             }
 
             @Override
@@ -91,7 +99,7 @@ new CheckoutVerifier(url, jsonResponse, signature, new VerifyingListener() {
 CheckoutVerifier(url, jsonResponse, signature, object : VerifyingListener {
             override fun onVerificationStarted() {}
 
-            override fun onVerificationCompleted(isVerified: Boolean) {}
+            override fun onVerificationCompleted(isVerified: Boolean?) {}
 
             override fun onExceptionCaught(exception: Exception) {}
         }).start()
