@@ -1,10 +1,10 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = '1.2'
+version = '1.4'
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    archiveClassifier.set("sources")
 }
 
 task javadoc(type: Javadoc) {
@@ -13,7 +13,7 @@ task javadoc(type: Javadoc) {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+    archiveClassifier.set("javadoc")
     from javadoc.destinationDir
 }
 tasks.withType(Javadoc).all {
@@ -32,6 +32,7 @@ bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
 
+    //noinspection GroovyAccessibility
     configurations = ['archives']
     pkg {
         repo = 'Maven'
