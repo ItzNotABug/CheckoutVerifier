@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package com.lazygeniouz.checkoutverifier
 
 class CheckoutVerifier {
@@ -5,11 +6,11 @@ class CheckoutVerifier {
     private var verifyingUrl = ""
     private var responseJson = ""
     private var signature = ""
-    private var listener: VerifyingListener? = null
+    private lateinit var listener: VerifyingListener
 
     constructor()
 
-    constructor(url: String, jsonResponse: String, signature: String, mListener: VerifyingListener?) {
+    constructor(url: String, jsonResponse: String, signature: String, mListener: VerifyingListener) {
         this.verifyingUrl = url
         this.responseJson = jsonResponse
         this.signature = signature
@@ -31,7 +32,7 @@ class CheckoutVerifier {
         return this
     }
 
-    fun setListener(listener: VerifyingListener?): CheckoutVerifier {
+    fun setListener(listener: VerifyingListener): CheckoutVerifier {
         this.listener = listener
         return this
     }

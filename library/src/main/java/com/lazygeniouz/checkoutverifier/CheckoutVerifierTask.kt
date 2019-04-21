@@ -13,14 +13,14 @@ internal class CheckoutVerifierTask(
     private val verifyingUrl: String,
     private val responseBody: String,
     private val signature: String,
-    private val listener: VerifyingListener?
+    private val listener: VerifyingListener
 ) : AsyncTask<String, Boolean, Boolean>() {
 
     private var isExceptionCaught: Boolean = false
 
     override fun onPreExecute() {
         super.onPreExecute()
-        listener?.onVerificationStarted()
+        listener.onVerificationStarted()
     }
 
     override fun doInBackground(vararg strings: String): Boolean? {
@@ -39,7 +39,7 @@ internal class CheckoutVerifierTask(
         } catch (e: IOException) {
             e.printStackTrace()
             isExceptionCaught = true
-            listener?.onExceptionCaught(e)
+            listener.onExceptionCaught(e)
         } finally {
             urlConnection?.disconnect()
         }
@@ -49,7 +49,7 @@ internal class CheckoutVerifierTask(
     }
 
     override fun onPostExecute(@Nullable result: Boolean?) {
-        listener?.onVerificationCompleted(result)
+        listener.onVerificationCompleted(result)
     }
 
     private fun convertStreamToString(`is`: InputStreamReader): String {
