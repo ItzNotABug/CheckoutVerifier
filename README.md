@@ -1,4 +1,9 @@
 # CheckoutVerifier
+
+<h1 align=center>
+<img src="logo/horizontal.png" width=60%>
+</h1>
+
 CheckoutVerifier helps you Verify your In-App Purchase receipts & protect your Apps from hacking, patching used by Piracy Apps like Lucky Patcher.
 <br/>Since I was using these classes in every project, the Copy/Pasting of classes was annoying so thought of releasing it as a library which might be of help to others too!
 
