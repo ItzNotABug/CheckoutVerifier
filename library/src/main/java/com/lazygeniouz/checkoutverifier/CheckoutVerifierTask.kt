@@ -2,7 +2,6 @@ package com.lazygeniouz.checkoutverifier
 
 import android.os.AsyncTask
 import org.jetbrains.annotations.Nullable
-import java.io.IOException
 import java.io.InputStreamReader
 import java.net.URL
 import java.net.URLEncoder
@@ -13,7 +12,7 @@ internal class CheckoutVerifierTask(
     private val verifyingUrl: String,
     private val responseBody: String,
     private val signature: String,
-    private val listener: VerifyingListener
+    private val listener: VerifierListener
 ) : AsyncTask<String, Boolean, Boolean>() {
 
     private var isExceptionCaught: Boolean = false
@@ -36,10 +35,10 @@ internal class CheckoutVerifierTask(
             val inRead = InputStreamReader(inputStream)
             isPurchaseVerified = convertStreamToString(inRead)
 
-        } catch (e: IOException) {
-            e.printStackTrace()
+        } catch (exception: Exception) {
+            exception.printStackTrace()
             isExceptionCaught = true
-            listener.onExceptionCaught(e)
+            listener.onExceptionCaught(exception)
         } finally {
             urlConnection?.disconnect()
         }
@@ -52,8 +51,8 @@ internal class CheckoutVerifierTask(
         listener.onVerificationCompleted(result)
     }
 
-    private fun convertStreamToString(`is`: InputStreamReader): String {
-        val s = Scanner(`is`).useDelimiter("\\A")
-        return if (s.hasNext()) s.next() else ""
+    private fun convertStreamToString(inputStreamReader: InputStreamReader): String {
+        val scanner = Scanner(inputStreamReader).useDelimiter("\\A")
+        return if (scanner.hasNext()) scanner.next() else ""
     }
 }

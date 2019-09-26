@@ -6,11 +6,11 @@ class CheckoutVerifier {
     private var verifyingUrl = ""
     private var responseJson = ""
     private var signature = ""
-    private lateinit var listener: VerifyingListener
+    private lateinit var listener: VerifierListener
 
     constructor()
 
-    constructor(url: String, jsonResponse: String, signature: String, mListener: VerifyingListener) {
+    constructor(url: String, jsonResponse: String, signature: String, mListener: VerifierListener) {
         this.verifyingUrl = url
         this.responseJson = jsonResponse
         this.signature = signature
@@ -32,24 +32,19 @@ class CheckoutVerifier {
         return this
     }
 
-    fun setListener(listener: VerifyingListener): CheckoutVerifier {
+    fun setListener(listener: VerifierListener): CheckoutVerifier {
         this.listener = listener
         return this
     }
 
-
     fun start(): CheckoutVerifier {
-        if (isEverythingOk)
-            CheckoutVerifierTask(verifyingUrl, responseJson, signature, listener).execute()
-        else
-            throw IllegalArgumentException("Either of the Passed arguments (Server Url, Json-Response or Signature) are Empty or Not valid!")
+        if (isEverythingOk) CheckoutVerifierTask(verifyingUrl, responseJson, signature, listener).execute()
+        else throw IllegalArgumentException("Either of the Passed arguments (Server Url, Json-Response or Signature) are Empty or Not valid!")
         return this
     }
 
-
-
     private val isEverythingOk: Boolean
-        get() = !verifyingUrl.trim { it <= ' ' }.isEmpty() && verifyingUrl.startsWith("http")
-                && !responseJson.trim { it <= ' ' }.isEmpty() && !signature.trim { it <= ' ' }.isEmpty()
+        get() = verifyingUrl.trim().isNotEmpty() && verifyingUrl.startsWith("http")
+                && responseJson.trim().isNotEmpty() && signature.trim().isNotEmpty()
 
 }
