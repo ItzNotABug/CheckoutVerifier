@@ -8,6 +8,7 @@ import java.net.URLEncoder
 import java.util.*
 import javax.net.ssl.HttpsURLConnection
 
+@Deprecated("Use CheckoutVerifierCoroutineTask")
 internal class CheckoutVerifierTask(
     private val verifyingUrl: String,
     private val responseBody: String,

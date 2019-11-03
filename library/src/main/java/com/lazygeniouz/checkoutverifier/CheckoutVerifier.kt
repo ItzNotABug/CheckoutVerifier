@@ -38,7 +38,7 @@ class CheckoutVerifier {
     }
 
     fun start(): CheckoutVerifier {
-        if (isEverythingOk) CheckoutVerifierTask(verifyingUrl, responseJson, signature, listener).execute()
+        if (isEverythingOk) CheckoutVerifierCoroutineTask(verifyingUrl, responseJson, signature, listener).start()
         else throw IllegalArgumentException("Either of the Passed arguments (Server Url, Json-Response or Signature) are Empty or Not valid!")
         return this
     }
