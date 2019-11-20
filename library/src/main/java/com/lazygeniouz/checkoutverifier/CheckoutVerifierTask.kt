@@ -8,6 +8,7 @@ import java.net.URLEncoder
 import java.util.*
 import javax.net.ssl.HttpsURLConnection
 
+//AsyncTask is marked @Deprecated in "Android 11"
 @Deprecated("Use CheckoutVerifierCoroutineTask")
 internal class CheckoutVerifierTask(
     private val verifyingUrl: String,
