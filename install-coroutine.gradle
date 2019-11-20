@@ -1,0 +1,45 @@
+/*
+ * Created by Darshan Pandya.
+ * @itznotabug
+ * Copyright (c) 2019.
+ */
+
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.lazygeniouz'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.lazygeniouz' // CREATE A GROUP ID FOR YOUR LIBRARY
+                artifactId 'checkout-verifier-coroutine' // THE NAME OF YOUR MODULE
+
+                name 'CheckoutVerifier Coroutine' // YOUR LIBRARY NAME
+                description 'A simple Android library to cross promote your apps, websites! (Uses Kotlin Coroutines)' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/ItzNotABug/CheckoutVerifier' // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'itznotabug' //YOUR ID
+                        name 'DarShan Pandya' //YOUR NAME
+                        email 'itznotabug@gmail.com' //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection 'https://github.com/ItzNotABug/CheckoutVerifier.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/ItzNotABug/CheckoutVerifier.git' // YOUR GIT REPO
+                    url 'https://github.com/ItzNotABug/CheckoutVerifier' // YOUR SITE
+
+                }
+            }
+        }
+    }
+}
