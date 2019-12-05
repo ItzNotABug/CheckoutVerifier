@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable
 
 interface VerifierListener {
 
-    //Called when CheckoutVerifierTask's onPreExecute() is fired.
+    //Called when CheckoutVerifierCoroutineTask is started.
     //Helpful for showing progressBar or a loading screen.
     fun onVerificationStarted()
 
