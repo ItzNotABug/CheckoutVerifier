@@ -63,7 +63,11 @@ library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/
 <br/>
 ```gradle
 dependencies {
-    implementation 'com.lazygeniouz:checkout-verifier:library_version'
+    //This internally uses AsyncTask. 
+    implementation 'com.lazygeniouz:checkout-verifier:$library_version'
+    
+    //This internally uses Kotlin Coroutines.
+    implementation 'com.lazygeniouz:checkout-verifier-coroutine:library_version'
 }
 ```
 
@@ -80,8 +84,7 @@ new CheckoutVerifier(url, jsonResponse, signature, new VerifyingListener() {
 
             @Override
             public void onVerificationCompleted(boolean isVerified) {
-                //From library version (1.4),
-                //this Boolean will be `NULLABLE` & will be `NULL` if an exception was caught,
+                //`isVerified` Boolean will be `NULLABLE` & will be `NULL` if an exception was caught,
                 //while connecting the specified server url or something else went wrong,
                 //for better error handling
 
