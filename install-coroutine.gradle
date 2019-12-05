@@ -37,7 +37,6 @@ install {
                     connection 'https://github.com/ItzNotABug/CheckoutVerifier.git' // YOUR GIT REPO
                     developerConnection 'https://github.com/ItzNotABug/CheckoutVerifier.git' // YOUR GIT REPO
                     url 'https://github.com/ItzNotABug/CheckoutVerifier' // YOUR SITE
-
                 }
             }
         }
