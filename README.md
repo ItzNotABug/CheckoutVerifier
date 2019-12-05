@@ -67,7 +67,7 @@ dependencies {
     implementation 'com.lazygeniouz:checkout-verifier:$library_version'
     
     //This internally uses Kotlin Coroutines.
-    implementation 'com.lazygeniouz:checkout-verifier-coroutine:library_version'
+    implementation 'com.lazygeniouz:checkout-verifier-coroutine:$library_version'
 }
 ```
 
