@@ -63,52 +63,29 @@ library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/
 <br/>
 ```gradle
 dependencies {
-    //This internally uses AsyncTask. 
-    implementation 'com.lazygeniouz:checkout-verifier:$library_version'
-    
     //This internally uses Kotlin Coroutines.
+    //This will be completely moved to the `checkout-verifier` group
     implementation 'com.lazygeniouz:checkout-verifier-coroutine:$library_version'
 }
 ```
 
 #### * CheckOutVerifier
-Just pass on the required fields in the Constructor & call `start();`
+Just pass on the required `PurchaseBundle` in the Constructor & call `authenticate();`
+<br/>The `authenticate()` returns a `Result` object.
+<br/>If the connection to the server was successful & a result was returned, 
+<br/>`CompletionResult(isVerified: Boolean)` is returned, `ErrorResult(exception: Exception)` otherwise.
 <br/>Example:
-<br/>`Java`
-``` java
-new CheckoutVerifier(url, jsonResponse, signature, new VerifyingListener() {
-            @Override
-            public void onVerificationStarted() {
-                //Show a ProgressDialog or something
-            }
 
-            @Override
-            public void onVerificationCompleted(boolean isVerified) {
-                //`isVerified` Boolean will be `NULLABLE` & will be `NULL` if an exception was caught,
-                //while connecting the specified server url or something else went wrong,
-                //for better error handling
-
-                if(isVerified != null) {
-                    ...
-                    //Check if the Purchase is Valid...
-                    //Consume if not!
-                }
-            }
-
-            @Override
-            public void onExceptionCaught(@NotNull Exception exception) {
-                //Called when there was an error connecting to Server.
-            }
-        }).start();
-
-```
 <br/>`Kotlin`
 ```kotlin
-CheckoutVerifier(url, jsonResponse, signature, object : VerifyingListener {
-            override fun onVerificationStarted() {}
-
-            override fun onVerificationCompleted(isVerified: Boolean?) {}
-
-            override fun onExceptionCaught(exception: Exception) {}
-        }).start()
+yourScope.launch {
+    val purchaseBundle = PurchaseBundle(url, jsonResponse, signature)
+    when (val result = CheckoutVerifier(purchaseBundle).authenticate()) {
+        is CompletionResult -> {
+            val verified = result.isVerified
+            // Do something
+        }
+      is ErrorResult -> Log.d(TAG, result.exception.message)
+    }
+}
 ```
