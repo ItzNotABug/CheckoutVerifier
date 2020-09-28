@@ -1,62 +1,47 @@
 @file:Suppress("unused")
+
 package com.lazygeniouz.checkoutverifier
+
+import com.lazygeniouz.checkoutverifier.bundle.PurchaseBundle
+import com.lazygeniouz.checkoutverifier.helper.CheckoutHelper
+import com.lazygeniouz.checkoutverifier.results.Result
 
 class CheckoutVerifier {
 
-    private var verifyingUrl = ""
-    private var jsonResponse = ""
-    private var signature = ""
-    private lateinit var listener: VerifierListener
+    private lateinit var purchaseBundle: PurchaseBundle
 
     constructor()
 
     /**
      * Constructor for CheckoutVerifier
-     * @param url = Server Url.
-     * @param jsonResponse = Json Response received after successful purchase.
-     * @param signature = Signature received after successful purchase.
-     * @param listener = Listener for CheckoutVerifier callbacks.
+     * @param bundle = A Purchase Bundle which includes the transaction info.
      */
-    constructor(url: String, jsonResponse: String, signature: String, listener: VerifierListener) {
-        this.verifyingUrl = url
-        this.jsonResponse = jsonResponse
-        this.signature = signature
-        this.listener = listener
+    constructor(bundle: PurchaseBundle) {
+        this.purchaseBundle = bundle
     }
 
-    /** @param url = Server Url. */
-    fun setUrl(url: String): CheckoutVerifier {
-        this.verifyingUrl = url
+    /** @param bundle = A Purchase Bundle which includes the transaction info. */
+    fun setUrl(bundle: PurchaseBundle): CheckoutVerifier {
+        this.purchaseBundle = bundle
         return this
     }
 
-    /** @param jsonResponse = Json Response received after successful purchase. */
-    fun setResponseJson(jsonResponse: String): CheckoutVerifier {
-        this.jsonResponse = jsonResponse
-        return this
-    }
-
-    /** @param signature = Signature received after successful purchase. */
-    fun setSignature(signature: String): CheckoutVerifier {
-        this.signature = signature
-        return this
-    }
-
-    /** @param listener = Listener for CheckoutVerifier callbacks. */
-    fun setListener(listener: VerifierListener): CheckoutVerifier {
-        this.listener = listener
-        return this
-    }
-
-    /** Start the verifying process. */
-    fun start(): CheckoutVerifier {
-        if (isEverythingOk) CheckoutVerifierTask(verifyingUrl, jsonResponse, signature, listener).execute()
-        else throw IllegalArgumentException("Either of the Passed arguments (Server Url, Json-Response or Signature) are Empty or Not valid!")
-        return this
+    /**
+     * `start()` is a suspend function `authenticate()` now
+     * @return SuccessResult if everything goes right,
+     * an ErrorResult if an exception is caught
+     * @see Result
+     */
+    suspend fun authenticate(): Result {
+        if (isEverythingOk)
+            return CheckoutHelper(purchaseBundle).start()
+        else throw IllegalArgumentException("Either of the Passed arguments in PurchaseBundle (Server Url, Json-Response or Signature) are Empty or Not valid!")
     }
 
     private val isEverythingOk: Boolean
-        get() = verifyingUrl.trim().isNotEmpty() && verifyingUrl.startsWith("http")
-                && jsonResponse.trim().isNotEmpty() && signature.trim().isNotEmpty()
+        get() = purchaseBundle.verifyingUrl.trim()
+            .isNotEmpty() && purchaseBundle.verifyingUrl.startsWith("http")
+                && purchaseBundle.jsonResponse.trim()
+            .isNotEmpty() && purchaseBundle.signature.trim().isNotEmpty()
 
 }
