@@ -1,5 +1,7 @@
 # CheckoutVerifier
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/65b3c4a5da5549adb980bf15c0d870d0)](https://app.codacy.com/gh/ItzNotABug/CheckoutVerifier?utm_source=github.com&utm_medium=referral&utm_content=ItzNotABug/CheckoutVerifier&utm_campaign=Badge_Grade)
+
 <h1 align=center>
 <img src="logo/horizontal.png" width=60%>
 </h1>
