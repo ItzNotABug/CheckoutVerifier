@@ -6,6 +6,10 @@ import com.lazygeniouz.checkoutverifier.bundle.PurchaseBundle
 import com.lazygeniouz.checkoutverifier.helper.CheckoutHelper
 import com.lazygeniouz.checkoutverifier.results.Result
 
+/**
+ * CheckoutVerifier main class to verify your purchase via Google Play Billing Library,
+ * helps in protection from patching apps like Lucky Patcher.
+ */
 class CheckoutVerifier {
 
     private lateinit var purchaseBundle: PurchaseBundle

@@ -6,12 +6,17 @@ import com.lazygeniouz.checkoutverifier.results.ErrorResult
 import com.lazygeniouz.checkoutverifier.results.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.io.InputStreamReader
 import java.net.URL
 import java.net.URLEncoder
 import java.util.*
 import javax.net.ssl.HttpsURLConnection
 
+/**
+ * A Helper class to authenticate the Purchase
+ * @param purchaseBundle : A PurchaseBundle holds necessary data to validate the purchase.
+ */
 internal class CheckoutHelper(private val purchaseBundle: PurchaseBundle) {
 
     private lateinit var exception: Exception
@@ -30,7 +35,7 @@ internal class CheckoutHelper(private val purchaseBundle: PurchaseBundle) {
             val inRead = InputStreamReader(inputStream)
             isPurchaseVerified = inRead.convertToString()
 
-        } catch (exception: Exception) {
+        } catch (exception: IOException) {
             exception.printStackTrace()
             isExceptionCaught = true
             this.exception = exception
