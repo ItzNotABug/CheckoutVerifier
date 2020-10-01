@@ -10,13 +10,13 @@ Since I was using these classes in every project, the Copy/Pasting of classes wa
 The library sends the Signed Json Response & Signature that you receive after a purchase is completed on a specified server url where it checks the signature of that response data with your BASE64 Key provided to you in your Developer Console.
 
 ## Set Up
-* **Get Licensing API Key**\
+*   **Get Licensing API Key**\
 Navigate to Developer Console & Select your App.\
 Go to **Development Tools** > **Services & API**.\
 Copy the **BASE64 Licensing Key**
 
 
-* **Creating a Verifying PHP File**\
+*   **Creating a Verifying PHP File**\
 Just a create a File & name it as `verify.php` or anything you want.\
 Paste the following code in it & Upload it to your server.
 
@@ -46,7 +46,7 @@ openssl_free_key($key);
 ?>
 ```
 
-#### Implementing Library (Gradle)
+### Implementing Library (Gradle)
 library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg)](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
 ```gradle
 dependencies {
@@ -56,7 +56,7 @@ dependencies {
 }
 ```
 
-#### CheckoutVerifier
+### CheckoutVerifier
 Just pass on the required `PurchaseBundle` in the Constructor & call `authenticate();`\
 The `authenticate()` returns a `Result` object.\
 If the connection to the server was successful & a result was returned,\
