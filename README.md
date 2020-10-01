@@ -56,7 +56,7 @@ dependencies {
 }
 ```
 
-### CheckoutVerifier
+### Using CheckoutVerifier
 Just pass on the required `PurchaseBundle` in the Constructor & call `authenticate();`\
 The `authenticate()` returns a `Result` object.\
 If the connection to the server was successful & a result was returned,\
