@@ -4,8 +4,11 @@
 <img src="logo/horizontal.png" width=60%>
 </h1>
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb126216417b45668b81e08090d2d081)](https://www.codacy.com/gh/ItzNotABug/CheckoutVerifier/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ItzNotABug/CheckoutVerifier&amp;utm_campaign=Badge_Grade)
+
 CheckoutVerifier helps you Verify your In-App Purchase receipts & protect your Apps from hacking, patching used by Piracy Apps like Lucky Patcher.
-<br/>Since I was using these classes in every project, the Copy/Pasting of classes was annoying so thought of releasing it as a library which might be of help to others too!
+<br/>Since I was using these classes in every project,\
+the copy / pasting of classes was annoying so thought of releasing it as a library which might be of help to others too!
 
 
 ## How does it work?
