@@ -71,11 +71,12 @@ dependencies {
 #### * CheckoutVerifier
 Just pass on the required `PurchaseBundle` in the Constructor & call `authenticate();`
 <br/>The `authenticate()` returns a `Result` object.
+<br/>
 <br/>If the connection to the server was successful & a result was returned, 
-<br/>`CompletionResult(isVerified: Boolean)` is returned, `ErrorResult(exception: Exception)` otherwise.
-<br/>Example:
+<br/>`CompletionResult(isVerified: Boolean)` is returned, 
+<br/>`ErrorResult(exception: Exception)` otherwise.
 
-<br/>`Kotlin`
+<br/>Example:
 ```kotlin
 yourScope.launch {
     val purchaseBundle = PurchaseBundle(url, jsonResponse, signature)
