@@ -63,13 +63,12 @@ library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/
 <br/>
 ```gradle
 dependencies {
-    //This internally uses Kotlin Coroutines.
-    //This will be completely moved to the `checkout-verifier` group
-    implementation 'com.lazygeniouz:checkout-verifier-coroutine:$library_version'
+    // CheckoutVerifier now internally uses Kotlin Coroutines.
+    implementation 'com.lazygeniouz:checkout-verifier:$library_version'
 }
 ```
 
-#### * CheckOutVerifier
+#### * CheckoutVerifier
 Just pass on the required `PurchaseBundle` in the Constructor & call `authenticate();`
 <br/>The `authenticate()` returns a `Result` object.
 <br/>If the connection to the server was successful & a result was returned, 
