@@ -59,6 +59,7 @@ openssl_free_key($key);
 ```
 
 #### * Implementing Library (Gradle)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/65b3c4a5da5549adb980bf15c0d870d0)](https://app.codacy.com/gh/ItzNotABug/CheckoutVerifier?utm_source=github.com&utm_medium=referral&utm_content=ItzNotABug/CheckoutVerifier&utm_campaign=Badge_Grade)
 library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg)](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
 <br/>
 ```gradle
