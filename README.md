@@ -59,7 +59,7 @@ openssl_free_key($key);
 ```
 
 #### * Implementing Library (Gradle)
-library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg) ](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
+library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg)](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
 <br/>
 ```gradle
 dependencies {
