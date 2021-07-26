@@ -5,36 +5,23 @@ package com.lazygeniouz.checkoutverifier
 import com.lazygeniouz.checkoutverifier.bundle.PurchaseBundle
 import com.lazygeniouz.checkoutverifier.helper.CheckoutHelper
 import com.lazygeniouz.checkoutverifier.results.Result
+import org.jetbrains.annotations.NotNull
 
 /**
  * CheckoutVerifier main class to verify your purchase via Google Play Billing Library,
  * helps in protection from patching apps like Lucky Patcher.
+ *
+ * Constructor for CheckoutVerifier
+ * @param purchaseBundle = A [PurchaseBundle] which includes the transaction info.
  */
-class CheckoutVerifier {
-
-    private lateinit var purchaseBundle: PurchaseBundle
-
-    constructor()
+class CheckoutVerifier(@NotNull private val purchaseBundle: PurchaseBundle) {
 
     /**
-     * Constructor for CheckoutVerifier
-     * @param bundle = A Purchase Bundle which includes the transaction info.
-     */
-    constructor(bundle: PurchaseBundle) {
-        this.purchaseBundle = bundle
-    }
-
-    /** @param bundle = A Purchase Bundle which includes the transaction info. */
-    fun setUrl(bundle: PurchaseBundle): CheckoutVerifier {
-        this.purchaseBundle = bundle
-        return this
-    }
-
-    /**
-     * `start()` is a suspend function `authenticate()` now
-     * @return SuccessResult if everything goes right,
-     * an ErrorResult if an exception is caught
-     * @see Result
+     * An **ErrorResult** if an exception was caught,
+     *
+     * A **CompletionResult** otherwise.
+     *
+     * @return [Result]
      */
     suspend fun authenticate(): Result {
         if (isEverythingOk)
@@ -43,9 +30,9 @@ class CheckoutVerifier {
     }
 
     private val isEverythingOk: Boolean
-        get() = purchaseBundle.verifyingUrl.trim()
-            .isNotEmpty() && purchaseBundle.verifyingUrl.startsWith("http")
-                && purchaseBundle.jsonResponse.trim()
-            .isNotEmpty() && purchaseBundle.signature.trim().isNotEmpty()
+        get() = purchaseBundle.verifyingUrl.trim().isNotEmpty()
+                && purchaseBundle.verifyingUrl.startsWith("http")
+                && purchaseBundle.jsonResponse.trim().isNotEmpty()
+                && purchaseBundle.signature.trim().isNotEmpty()
 
 }

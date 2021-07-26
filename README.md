@@ -6,6 +6,15 @@
 
 CheckoutVerifier helps you Verify your In-App Purchase receipts & protect your Apps from hacking, patching used by Piracy Apps like Lucky Patcher.\
 Since I was using these classes in every project, the Copy/Pasting of classes was annoying so thought of releasing it as a library which might be of help to others too!
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb126216417b45668b81e08090d2d081)](https://www.codacy.com/gh/ItzNotABug/CheckoutVerifier/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ItzNotABug/CheckoutVerifier&amp;utm_campaign=Badge_Grade)
+
+CheckoutVerifier helps you Verify your In-App Purchase receipts & protect your Apps from hacking, patching used by Piracy Apps like Lucky Patcher.
+<br/>Since I was using these classes in every project,\
+the copy / pasting of classes was annoying so thought of releasing it as a library which might be of help to others too!
+
+
+## How does it work?
+Well, the library sends the Signed Json Response & Signature that you receive after a purchase is completed on a specified server url where it checks the signature of that response data with your BASE64 Key provided to you in your Developer Console.
 
 The library sends the Signed Json Response & Signature that you receive after a purchase is completed on a specified server url where it checks the signature of that response data with your BASE64 Key provided to you in your Developer Console.
 
@@ -48,11 +57,13 @@ openssl_free_key($key);
 
 ### Implementing Library (Gradle)
 library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg)](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
+#### * Implementing Library (Gradle)
+library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg)](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
+<br/>
 ```gradle
 dependencies {
-    //This internally uses Kotlin Coroutines.
-    //This will be completely moved to the `checkout-verifier` group
-    implementation 'com.lazygeniouz:checkout-verifier-coroutine:$library_version'
+    // CheckoutVerifier now internally uses Kotlin Coroutines.
+    implementation 'com.lazygeniouz:checkout-verifier:$library_version'
 }
 ```
 
@@ -62,6 +73,15 @@ The `authenticate()` returns a `Result` object.\
 If the connection to the server was successful & a result was returned,\
 `CompletionResult(isVerified: Boolean)` is returned, `ErrorResult(exception: Exception)` otherwise.\
 Example:
+#### * CheckoutVerifier
+Just pass on the required `PurchaseBundle` in the Constructor & call `authenticate();`
+<br/>The `authenticate()` returns a `Result` object.
+<br/>
+<br/>If the connection to the server was successful & a result was returned, 
+<br/>`CompletionResult(isVerified: Boolean)` is returned, 
+<br/>`ErrorResult(exception: Exception)` otherwise.
+
+<br/>Example:
 ```kotlin
 yourScope.launch {
     val purchaseBundle = PurchaseBundle(url, jsonResponse, signature)
