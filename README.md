@@ -7,8 +7,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb126216417b45668b81e08090d2d081)](https://www.codacy.com/gh/ItzNotABug/CheckoutVerifier/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ItzNotABug/CheckoutVerifier&amp;utm_campaign=Badge_Grade)
 
 CheckoutVerifier helps you Verify your In-App Purchase receipts & protect your Apps from hacking, patching used by Piracy Apps like Lucky Patcher.
-<br/>Since I was using these classes in every project,\
-the copy / pasting of classes was annoying so thought of releasing it as a library which might be of help to others too!
+<br/>Since I was using these classes in every project, the copy / pasting of classes was annoying so thought of releasing it as a library which might be of help to others too!
 
 
 ## How does it work?
@@ -27,43 +26,32 @@ Just a create a File & name it as `verify.php` or anything you want.
 
 ```php
 <?php
-// get jsonResponse
-$data = $_GET['jsonResponse'];
+    $data = $_GET['jsonResponse'];
+    $signature = $_GET['signature'];
+    $key_64 = "YOUR BASE64 KEY THAT YOU GOT FROM DEVELOPER CONSOLE, THERE SHOULD BE NO SPACES!";
 
-// get signature
-$signature = $_GET['signature'];
+    $key =  "-----BEGIN PUBLIC KEY-----\n".
+            chunk_split($key_64, 64,"\n").
+            "-----END PUBLIC KEY-----";
 
-// get key
-$key_64 = "YOUR BASE64 KEY THAT YOU GOT FROM DEVELOPER CONSOLE, THERE SHOULD BE NO SPACES!";
+    $key = openssl_get_publickey($key);
 
+    $ok = openssl_verify($data, base64_decode($signature), $key, OPENSSL_ALGO_SHA1);
+    if ($ok == 1) {
+        echo "verified";
+    } elseif ($ok == 0) {
+        echo "unverified";
+    } else {
+        die ("fault, error checking signature");
+    }
 
-$key =  "-----BEGIN PUBLIC KEY-----\n".
-        chunk_split($key_64, 64,"\n").
-        '-----END PUBLIC KEY-----';
-
-//using PHP to create an RSA key
-$key = openssl_get_publickey($key);
-
-
-// state whether signature is okay or not
-$ok = openssl_verify($data, base64_decode($signature), $key, OPENSSL_ALGO_SHA1);
-if ($ok == 1) {
-    echo "verified";
-} elseif ($ok == 0) {
-    echo "unverified";
-} else {
-    die ("fault, error checking signature");
-}
-
-// free the key from memory
-openssl_free_key($key);
-
+    openssl_free_key($key);
 ?>
 ```
 
 #### * Implementing Library (Gradle)
-library_version: [![Download](https://api.bintray.com/packages/itznotabug/Maven/CheckoutVerifier/images/download.svg)](https://bintray.com/itznotabug/Maven/CheckoutVerifier/_latestVersion)
-<br/>
+Note: Add `mavenCentral()` in `repositories` block.
+
 ```gradle
 dependencies {
     // CheckoutVerifier now internally uses Kotlin Coroutines.

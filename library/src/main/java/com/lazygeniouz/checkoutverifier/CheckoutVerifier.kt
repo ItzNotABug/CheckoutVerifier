@@ -4,6 +4,8 @@ package com.lazygeniouz.checkoutverifier
 
 import com.lazygeniouz.checkoutverifier.bundle.PurchaseBundle
 import com.lazygeniouz.checkoutverifier.helper.CheckoutHelper
+import com.lazygeniouz.checkoutverifier.results.CompletionResult
+import com.lazygeniouz.checkoutverifier.results.ErrorResult
 import com.lazygeniouz.checkoutverifier.results.Result
 import org.jetbrains.annotations.NotNull
 
@@ -17,9 +19,9 @@ import org.jetbrains.annotations.NotNull
 class CheckoutVerifier(@NotNull private val purchaseBundle: PurchaseBundle) {
 
     /**
-     * An **ErrorResult** if an exception was caught,
+     * An [ErrorResult] if an exception was caught,
      *
-     * A **CompletionResult** otherwise.
+     * A [CompletionResult] otherwise.
      *
      * @return [Result]
      */
@@ -34,5 +36,4 @@ class CheckoutVerifier(@NotNull private val purchaseBundle: PurchaseBundle) {
                 && purchaseBundle.verifyingUrl.startsWith("http")
                 && purchaseBundle.jsonResponse.trim().isNotEmpty()
                 && purchaseBundle.signature.trim().isNotEmpty()
-
 }
